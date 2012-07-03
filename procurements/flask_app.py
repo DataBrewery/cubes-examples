@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import cubes
+import os.path
 
 app = Flask(__name__)
 
@@ -7,8 +8,12 @@ app = Flask(__name__)
 # Data we aregoing to browse and logical model of the data
 #
 
-MODEL_PATH = "../vvo_model.json"
-DB_URL = "sqlite:///../vvo_data.sqlite"
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+MODEL_PATH = os.path.join(APP_ROOT, "vvo_model.json")
+DB_PATH = os.path.join(APP_ROOT, "vvo_data.sqlite")
+DB_URL = "sqlite://" + DB_PATH
+
 CUBE_NAME = "contracts"
 
 # Some global variables. We do not have to care about Flask provided thread
