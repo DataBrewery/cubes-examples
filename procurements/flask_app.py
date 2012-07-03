@@ -12,7 +12,7 @@ APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 MODEL_PATH = os.path.join(APP_ROOT, "vvo_model.json")
 DB_PATH = os.path.join(APP_ROOT, "vvo_data.sqlite")
-DB_URL = "sqlite://" + DB_PATH
+DB_URL = "sqlite:///" + DB_PATH
 
 CUBE_NAME = "contracts"
 
@@ -29,7 +29,7 @@ def report(dim_name=None):
     browser = get_browser()
 
     if not dim_name:
-        return render_template('report.html', dimensions=model.dimensions)
+        return render_template('report.html', dimensions=g.model.dimensions)
 
     # First we need to get the hierarchy to know the order of levels. Cubes
     # supports multiple hierarchies internally.
@@ -116,5 +116,4 @@ def get_browser():
 
 if __name__ == "__main__":
     app.debug = True
-    initialize_model()
     app.run()
