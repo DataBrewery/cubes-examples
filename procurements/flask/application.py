@@ -24,7 +24,7 @@ def report(dim_name=None):
     browser = get_browser()
 
     if not dim_name:
-        return render_template('report_star.html', dimensions=model.dimensions)
+        return render_template('report.html', dimensions=model.dimensions)
 
     # First we need to get the hierarchy to know the order of levels. Cubes
     # supports multiple hierarchies internally.
