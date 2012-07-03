@@ -19,22 +19,22 @@ CUBE_NAME = "contracts"
 # Some global variables. We do not have to care about Flask provided thread
 # safety here, as they are non-mutable.
 
-# g.workspace = None
-# g.model = None
+# workspace = None
+# model = None
 
 @app.route("/")
 @app.route("/<dim_name>")
 def report(dim_name=None):
 
-    browser = get_browser()
+    browser = workspace.browser_for_cube(model.cube(CUBE_NAME))
 
     if not dim_name:
-        return render_template('report.html', dimensions=g.model.dimensions)
+        return render_template('report.html', dimensions=model.dimensions)
 
     # First we need to get the hierarchy to know the order of levels. Cubes
     # supports multiple hierarchies internally.
     
-    dimension = g.model.dimension(dim_name)
+    dimension = model.dimension(dim_name)
     hierarchy = dimension.hierarchy()
 
     # Parse the`cut` request parameter and convert it to a list of 
@@ -105,14 +105,13 @@ def report(dim_name=None):
                             breadcrumbs=breadcrumbs)
 @app.before_first_request
 def initialize_model():
-    g.model = cubes.load_model(MODEL_PATH)
-    g.workspace = cubes.create_workspace("sql", g.model, url=DB_URL,
+    global model
+    global workspace
+    model = cubes.load_model(MODEL_PATH)
+    workspace = cubes.create_workspace("sql", model, url=DB_URL,
                                                      fact_prefix="ft_",
                                                      dimension_prefix="dm_")
 
-
-def get_browser():
-    return g.workspace.browser_for_cube(g.model.cube(CUBE_NAME))
 
 if __name__ == "__main__":
     app.debug = True
