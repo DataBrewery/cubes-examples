@@ -25,3 +25,8 @@ Flask Use
     python application.py
 
 Navigate browser to http://localhost:5000/
+
+Source Data
+-----------
+
+http://tendre.sme.sk
