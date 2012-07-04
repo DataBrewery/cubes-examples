@@ -16,6 +16,7 @@ Execute:
 
     $ slicer serve slicer.ini
 
+Documentation: http://packages.python.org/cubes/server.html
 
 Flask Use
 ---------
