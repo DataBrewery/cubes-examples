@@ -1,8 +1,9 @@
 {
     "name" : "vvo",
     "locale":"en",
-    "cubes": {
-        "contracts" : {
+    "cubes": [
+        {
+            "name": "contracts",
             "name": "contracts",
             "measures": {
                 "contract_amount": {"label": "Contract amount"}
@@ -63,25 +64,20 @@
             "mappings":
             {
                 "zmluva_hodnota":"zmluva_hodnota",
-                "fact.date_id":"bulletin_date_id",
-                "fact.cpv_id":"cpv_kod_id",
-                "fact.obstaravatel_id":"obstaravatel_org_id",
-                "fact.dodavatel_id":"dodavatel_id",
-                "fact.druh_postupu_id":"druh_postupu_id",
-                "fact.kriteria_vyhodnotenia_id":"kriteria_vyhodnotenia_id",
-                "fact.region_id":"geography_id"
-            },
+                "fact.date_id":"bulletin_date_id"
+             },
             "fact": "ft_contracts"
         }
-    },
+    ],
     
     "dimensions": {
         "cpv" : {
             "name": "cpv",
             "label": "Common Procurement Vocabulary",
             "key": "cpv_id",
-            "levels": {
-                "division" : {
+            "levels": [
+                {
+                    "name": "division",
                     "label": "division",
                     "label_attribute": "division_label",
                     "attributes": [
@@ -90,7 +86,8 @@
                         {"name":"division_compet", "label": "competitiveness in division"}
                     ]
                 },
-                "group": {
+                {
+                    "name": "group",
                     "label": "group",
                     "label_attribute": "group_label",
                     "attributes": [
@@ -99,7 +96,8 @@
                         {"name":"group_compet", "label": "competitiveness in grouop"}
                     ]
                 },
-                "class": {
+                {
+                    "name": "class",
                     "label": "class",
                     "label_attribute": "class_label",
                     "attributes": [
@@ -108,7 +106,8 @@
                         {"name":"class_compet", "label": "competitiveness in class"}
                         ]
                 },
-                "category": {
+                {
+                    "name":"category",
                     "label": "category",
                     "label_attribute": "category_label",
                     "attributes": [
@@ -117,7 +116,8 @@
                         {"name":"category_compet", "label": "competitiveness in category"}
                         ]
                 },
-                "detail": {
+                {
+                    "name": "detail",
                     "label": "detail",
                     "label_attribute": "detail_label",
                     "attributes": [
@@ -128,52 +128,53 @@
                         {"name":"detail_compet", "label": "competitiveness"}
                         ]
                 }
-            },
-            "hierarchies": {
-                "default": { "levels": ["division", "group", "class", "category", "detail"] }
-            }
+            ],
+            "hierarchy": ["division", "group", "class", "category", "detail"]
         },
         "date" : {
             "label" : "Date",
-            "levels" : {
-                "year" : { 
-                        "name": "year",
-                        "label": "Year",
-                        "attributes": [ 
-                            {"name":"year"} 
-                        ] 
-                    },
-                "month" : { 
-                        "name": "month", 
-                        "label" : "Month", 
-                        "attributes": [
-                            {"name":"month"},
-                            {"name":"month_name", "locales": ["en", "sk"]}, 
-                            {"name":"month_sname", "locales": ["en", "sk"]}
-                        ] 
-                    },
-                "day" : {
-                        "name": "day",
-                        "label" : "Day",
-                        "attributes": [
-                            {"name":"id"},
-                            {"name":"day"}] 
-                    }
-            },
-            "hierarchies" : {
-               "default": { "levels": ["year", "month", "day"] }
-            }
+            "levels" : [
+                {
+                    "name": "year",
+                    "name": "year",
+                    "label": "Year",
+                    "attributes": [ 
+                        {"name":"year"} 
+                    ] 
+                },
+                {
+                    "name": "month",
+                    "name": "month", 
+                    "label" : "Month", 
+                    "attributes": [
+                        {"name":"month"},
+                        {"name":"month_name", "locales": ["en", "sk"]}, 
+                        {"name":"month_sname", "locales": ["en", "sk"]}
+                    ] 
+                },
+                {
+                    "name": "day",
+                    "name": "day",
+                    "label" : "Day",
+                    "attributes": [
+                        {"name":"id"},
+                        {"name":"day"}] 
+                }
+            ],
+            "hierarchy" : ["year", "month", "day"]
         },
         "procurer" : {
             "label": "Procurer",
-            "levels" : {
-                "sector": {
+            "levels" : [
+                {
+                    "name": "sector",
                     "attributes":[
                         {"name":"account_sector_code", "label": "account sector code"},
                         {"name":"account_sector", "label": "account sector"}
                     ]
                 },
-                "procurer" : {
+                {
+                    "name": "procurer",
                     "label_attribute": "name",
                     "attributes": [
                         {"name":"id", "label": "id"}, 
@@ -186,13 +187,14 @@
                         {"name":"competitiveness", "label": "competitiveness"}
                     ]
                 }
-            },
+            ],
             "hierarchy": ["sector", "procurer"]
         },
         "supplier" : {
             "label": "Supplier",
-            "levels" : {
-                "supplier" : {
+            "levels" : [
+                {
+                    "name":"supplier",
                     "key": "id",
                     "label_attribute": "name",
                     "attributes": [
@@ -209,12 +211,13 @@
                         {"name":"competitiveness", "label": "competitiveness"}
                         ]
                 }
-            }
+            ]
         },
         "process_type" : {
             "label": "Procurement type",
-            "levels": {
-                "druh_postupu": {
+            "levels": [
+                {
+                    "name": "process_type",
                     "label_attribute": "description",
                     "attributes" : [
                         {"name":"id"}, 
@@ -222,12 +225,13 @@
                         {"name":"description", "locales": ["en", "sk"]}, 
                         {"name":"sdesc", "locales": ["en", "sk"]}]
                 }
-            }
+            ]
         },
         "criteria" : {
             "label": "Evalutaion criteria",
-            "levels": {
-                "criteria": {
+            "levels": [
+                {
+                    "name":"criteria",
                     "label_attribute": "description",
                     "attributes" : [
                         {"name":"code"},
@@ -235,27 +239,27 @@
                         {"name":"sdesc", "locales": ["en", "sk"]},
                         {"name":"id"}]
                 }
-            }
+            ]
         },
         "geography": {
             "label": "Region",
-            "levels": {
-                "okres": {
+            "levels": [
+                {
+                    "name":"okres",
                     "attributes": [
                         {"name":"okres_code", "label": "county code"},
                         {"name":"okres", "label": "county"}
                         ]
                 },
-                "kraj": {
+                {
+                    "name":"kraj",
                     "attributes": [
                         {"name":"kraj_code", "label": "region code"},
                         {"name":"kraj", "label": "region"}
                         ]
                 }
-            },
-            "hierarchies": {
-                "default" : { "levels": ["kraj", "okres"] }
-            }
+            ],
+            "hierarchy": ["kraj", "okres"]
             
         }
     }    
