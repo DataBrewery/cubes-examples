@@ -30,7 +30,7 @@ def drilldown(cell, dimension):
     result = browser.aggregate(cell, drilldown=[dimension])
 
     # for row in cubes.drilldown_rows(cell, result, dimension):
-    for row in result.drilldown_rows(dimension):
+    for row in result.table_rows(dimension):
         indent = "    " * (len(row.path) - 1)
         print "%s%s: %d" % (indent, row.label, row.record["contract_amount_sum"])
 
