@@ -42,3 +42,5 @@ columns=["date.year"]
 
 table = result.cross_table(rows, columns, ["contract_amount_sum"])
 print_cross_table(rows, columns, table)
+
+print "Created file: table.html"
