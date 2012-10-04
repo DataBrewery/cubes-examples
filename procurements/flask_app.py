@@ -2,6 +2,11 @@ from flask import Flask, render_template, request, g
 import cubes
 import os.path
 
+import logging
+
+logger = cubes.get_logger()
+logger.setLevel(logging.DEBUG)
+
 app = Flask(__name__)
 
 #
@@ -57,14 +62,15 @@ def report(dim_name=None):
     #
     # Do the work, do the aggregation.
     #
+    print "AGGREGATE %s DD: %s" % (cell, dim_name)
     result = browser.aggregate(cell, drilldown=[dim_name])
 
     # If we have no path, then there is no cut for the dimension, # therefore
     # there is no corresponding detail.
     if path:
-        breadcrumbs = browser.cell_details(cell, dimension)[0]
+        details = browser.cell_details(cell, dimension)[0]
     else:
-        breadcrumbs = {}
+        details = []
 
     # Find what level we are on and what is going to be the drill-down level
     # in the hierarchy
@@ -73,36 +79,23 @@ def report(dim_name=None):
     if levels:
         next_level = hierarchy.next_level(levels[-1])
     else:
-        next_level = hierarchy.levels[0]
-    
-    # To have human-readable table, we are not going to display keys or codes,
-    # but actual human-readable labels that are also stored within dimension.
-    # The dimension provides information in which attribute the label is
-    # stored.
-    
-    label_attribute = next_level.label_attribute.ref(simplify=True)
-
-    # We also need to know key attribute for the level, so we can generate
-    # appropriate URL links with cut of drilled-down cells.
-
-    key = next_level.key.ref(simplify=True)
+        next_level = hierarchy.next_level(None)
 
     # Are we at the very detailed level?
 
-    is_last = len(path) >= len(hierarchy.levels)-1
-
+    is_last = hierarchy.is_last(next_level)
     # Finally, we render it
 
-    return render_template('report.html', 
-                            dimensions=model.dimensions, 
+    return render_template('report.html',
+                            dimensions=model.dimensions,
                             dimension=dimension,
-                            levels=levels, 
-                            next_level=next_level, 
-                            label_attribute=label_attribute, 
-                            level_key=key,
-                            result=result, 
-                            cell=cell, is_last=is_last,
-                            breadcrumbs=breadcrumbs)
+                            levels=levels,
+                            next_level=next_level,
+                            result=result,
+                            cell=cell,
+                            is_last=is_last,
+                            details=details)
+
 @app.before_first_request
 def initialize_model():
     global model
