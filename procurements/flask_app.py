@@ -31,7 +31,7 @@ CUBE_NAME = "contracts"
 @app.route("/<dim_name>")
 def report(dim_name=None):
 
-    browser = workspace.browser_for_cube(model.cube(CUBE_NAME))
+    browser = workspace.browser(model.cube(CUBE_NAME))
 
     if not dim_name:
         return render_template('report.html', dimensions=model.dimensions)

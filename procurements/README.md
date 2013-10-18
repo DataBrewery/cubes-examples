@@ -30,7 +30,7 @@ Flask Use
 ---------
 
     cd procurements
-    python fask_app.py
+    python flask_app.py
 
 Navigate browser to http://localhost:5000/
 
