@@ -1,0 +1,148 @@
+{
+    "dimensions": [
+                   
+        {
+        	"comment": "This is used as a template for other date dimensions.",
+        	
+            "name": "date_base",
+            "label": "Date Base",
+            "info": {
+                "cv-datefilter": true,
+                "cv-datefilter-hierarchy": "weekly"
+            },
+            "levels": [
+                {
+                    "name":"year",
+                    "label":"Year",
+                    "info": { "cv-datefilter-field": "year" }
+                },
+                {
+                    "name":"quarter",
+                    "label":"Quarter"
+                },
+                {
+                    "name":"month",
+                    "label":"Month"
+                },
+                {
+                    "name":"week",
+                    "label":"Week",
+                    "info": { "cv-datefilter-field": "week" }
+                }
+            ],
+            "hierarchies": [
+                {
+                    "name": "weekly",
+                    "label": "Weekly",
+                    "levels": [ "year", "week"]
+                },
+                {
+                    "name": "monthly",
+                    "label": "Monthly",
+                    "levels": [ "year", "quarter", "month"]
+                }
+            ]
+        },
+        
+        {
+            "name": "date_sale",
+            "label": "Sale Date",
+            "template": "date_base"
+        },
+        
+        {
+            "name": "customer",
+            "label": "Customer"			,
+            "levels": [ {
+                "name": "customer",
+                "label": "Customer",
+                "attributes": [ "name" ],
+                "label_attribute": "name"
+            } ]
+        },
+        
+        {
+            "name": "product",
+            "label": "Product",
+            "levels": [
+                {
+                    "name":"category",
+                    "label":"Category",
+                    "attributes": [ "category" ],
+                    "label_attribute": "category"
+                },
+                {
+                    "name":"name",
+                    "label":"Product Name",
+                    "attributes": [ "name" ],
+                    "label_attribute": "name"
+                }
+            ]
+        },
+        
+        {
+            "name": "country",
+            "label": "Country",
+            "levels": [
+                {
+                    "name":"region",
+                    "label":"Region",
+                    "attributes": [ "region" ],
+                    "label_attribute": "region"
+                },
+                {
+                    "name":"country",
+                    "label":"Country",
+                    "attributes": [ "country" ],
+                    "label_attribute": "country"
+                }
+            ]
+        }
+
+    ],
+
+    "cubes": [
+
+        {
+            "name": "sales",
+            "label": "Webshop / Sales",
+            "dimensions": ["date_sale", "customer", "product", "country" ],
+            "measures": [
+		        {"name": "quantity", "aggregations": ["sum", "avg", "max"] },
+		        {"name": "price_total", "aggregations": ["sum", "avg", "max", "min"] }
+            ],
+            
+            "joins": [
+                  {
+                      "master": "sales.date_id",
+                      "detail": "dates.id"
+                  },
+                  {
+                      "master": "sales.customer_id",
+                      "detail": "customers.id"
+                  },
+                  {
+                      "master": "sales.product_id",
+                      "detail": "products.id"
+                  },
+                  {
+                      "master": "sales.country_id",
+                      "detail": "countries.id"
+                  }
+            ],            
+            
+            "mappings": {
+                "date_sale.year": "dates.date_year",
+                "date_sale.quarter": "dates.date_quarter",
+                "date_sale.month": "dates.date_month",
+                "date_sale.week": "dates.date_week",
+                "customer": "customers.name",
+                "product.category": "products.category",
+                "product.name": "products.name",
+                "country.region": "countries.continent",
+                "country.country": "countries.country"
+            }
+        }
+        
+    ]
+}
