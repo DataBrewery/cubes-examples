@@ -56,7 +56,7 @@
             "levels": [ {
                 "name": "customer",
                 "label": "Customer",
-                "attributes": [ "name" ],
+                "attributes": [ "id", "name" ],
                 "label_attribute": "name"
             } ]
         },
@@ -68,14 +68,16 @@
                 {
                     "name":"category",
                     "label":"Category",
-                    "attributes": [ "category" ],
-                    "label_attribute": "category"
+                    "attributes": [ "category_id", "category_label" ],
+                    "key": "category_id",
+                    "label_attribute": "category_label"
                 },
                 {
-                    "name":"name",
-                    "label":"Product Name",
-                    "attributes": [ "name" ],
-                    "label_attribute": "name"
+                    "name":"product",
+                    "label":"Product",
+                    "attributes": [ "product_id", "product_label" ],
+                    "key": "product_id",
+                    "label_attribute": "product_label"
                 }
             ]
         },
@@ -87,14 +89,16 @@
                 {
                     "name":"region",
                     "label":"Region",
-                    "attributes": [ "region" ],
-                    "label_attribute": "region"
+                    "attributes": [ "region_id", "region_label" ],
+                    "key": "region_id",
+                    "label_attribute": "region_label"
                 },
                 {
                     "name":"country",
                     "label":"Country",
-                    "attributes": [ "country" ],
-                    "label_attribute": "country"
+                    "attributes": [ "country_id", "country_label" ],
+                    "key": "country_id",
+                    "label_attribute": "country_label"
                 }
             ]
         }
@@ -136,11 +140,19 @@
                 "date_sale.quarter": "dates.date_quarter",
                 "date_sale.month": "dates.date_month",
                 "date_sale.week": "dates.date_week",
-                "customer": "customers.name",
-                "product.category": "products.category",
-                "product.name": "products.name",
-                "country.region": "countries.continent",
-                "country.country": "countries.country"
+                
+                "customer.id": "customers.id",
+                "customer.name": "customers.name",
+                
+                "product.category_id": "products.category_id",
+                "product.category_label": "products.category_label",
+                "product.product_id": "products.product_id",
+                "product.product_label": "products.product_label",
+                
+                "country.region_id": "countries.continent_id",
+                "country.region_label": "countries.continent_label",
+                "country.country_id": "countries.country_id",
+                "country.country_label": "countries.country_label"
             }
         }
         

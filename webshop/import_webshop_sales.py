@@ -25,16 +25,13 @@ def main():
     connection.execute("DELETE FROM products");
     connection.execute("DELETE FROM sales");
     
-
-    # Generate all dates
-    generate_dates()
-    
     # Import facts and dimension data
     import_sales()
-    
+    # Generate all dates
+    generate_dates()    
+
     # Add extra dimensions for left joins
-    insert_product ("Books", "200 ways of slicing a cube")
-    
+    insert_product ("Books", "200 ways of slicing a cube")    
 
 def save_object(table, row):
     
@@ -45,9 +42,9 @@ def save_object(table, row):
         cache[table] = {}
     
     keys = row.keys();
-    sql = "INSERT INTO " + table + " ( "
+    sql = "INSERT INTO " + table + " ("
     sql = sql + ", ".join(keys)
-    sql = sql + ") VALUES ( "
+    sql = sql + ") VALUES ("
     sql = sql + ", ".join([ ("'" + str(row[key]) + "'") for key in keys])
     sql = sql + ")"
     
@@ -72,18 +69,22 @@ def sanitize(value):
 def insert_country (continent, country):
     
     row = {
-           "id": sanitize(country),
-           "continent": continent,
-           "country": country
+           "id": sanitize (continent + "/" + country),
+           "continent_id": sanitize(continent),
+           "continent_label": continent,
+           "country_id": sanitize(country),
+           "country_label": country,
     }
     return save_object ("countries", row)
 
 def insert_product (category, product):
     
     row = {
-           "id": sanitize(product),
-           "category": category,
-           "name": product
+           "id": sanitize (category + "/" + product),
+           "category_id": sanitize(category),
+           "category_label": category,
+           "product_id": sanitize(product),
+           "product_label": product,
     }
     return save_object ("products", row)
 
@@ -155,8 +156,9 @@ def import_sales():
             fact["country_id"] = insert_country(arow["country.region"], arow["country.country"])
             fact["product_id"] = insert_product(arow["product.category"], arow["product.name"])
             
-            fact["quantity"] = arow["quantity"]
-            fact["price_total"] = arow["price_total"]
+            # Import figures (quick hack for localization issues):
+            fact["quantity"] = float(str(arow["quantity"]).replace(",", "."))
+            fact["price_total"] = float(str(arow["price_total"]).replace(",", "."))
             
             insert_fact(fact)
             

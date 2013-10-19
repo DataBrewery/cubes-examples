@@ -11,22 +11,26 @@ create table dates (
 
 drop table if exists customers;
 create table customers (
-    id varchar(128) unique,
+    id varchar(200) unique,
     name varchar(200)
 );
 
 drop table if exists products;
 create table products (
-    id varchar(128) unique,
-    category varchar(200),
-    name varchar(200)
+    id varchar(200) unique,
+    category_id varchar(200),
+    category_label varchar(200),
+    product_id varchar(200),
+    product_label varchar(200)
 );
 
 drop table if exists countries;
 create table countries (
-    id varchar(128) unique,
-    continent varchar(200),
-    country varchar(200)
+    id varchar(200) unique,
+    continent_id varchar(200),
+    continent_label varchar(200),
+    country_id varchar(200),
+    country_label varchar(200)
 );
 
 drop table if exists sales;
