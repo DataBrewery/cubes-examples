@@ -17,8 +17,8 @@ online shop.
 It contains a fact table "sales" with information about product sales,
 customer country, product and product category, and invoice amount.
 
-It can be used for demostration and test purposes.
-
+It also contains a fact table "webvisits" with information about
+fictional web visits (country of visitor, page views, browser...).
 
 Slicer Use
 ----------
@@ -29,12 +29,14 @@ Execute:
 
 Documentation: http://packages.python.org/cubes/server.html
 
-Cubesviewer
+CubesViewer
 -----------
 
-Live example: _to be done_
+You can use a client tool like CubesViewer to inspect these cubes:
 
-Documentation: https://github.com/jjmontesl/cubesviewer
+Live example: http://jjmontesl.github.io/cubesviewer/
+
+Documentation: https://github.com/jjmontesl/cubesviewer/
 
 
 
