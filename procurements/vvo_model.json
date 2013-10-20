@@ -65,8 +65,7 @@
             {
                 "zmluva_hodnota":"zmluva_hodnota",
                 "fact.date_id":"bulletin_date_id"
-             },
-            "fact": "ft_contracts"
+             }
         }
     ],
     
@@ -133,6 +132,9 @@
         },
         "date" : {
             "label" : "Date",
+            "info": {
+                "cv-datefilter": true
+            },
             "levels" : [
                 {
                     "name": "year",
@@ -140,7 +142,8 @@
                     "label": "Year",
                     "attributes": [ 
                         {"name":"year"} 
-                    ] 
+                    ],
+                    "info": { "cv-datefilter-field": "year" }
                 },
                 {
                     "name": "month",
@@ -150,7 +153,8 @@
                         {"name":"month"},
                         {"name":"month_name", "locales": ["en", "sk"]}, 
                         {"name":"month_sname", "locales": ["en", "sk"]}
-                    ] 
+                    ],
+                    "info": { "cv-datefilter-field": "month" }
                 },
                 {
                     "name": "day",
@@ -158,7 +162,8 @@
                     "label" : "Day",
                     "attributes": [
                         {"name":"id"},
-                        {"name":"day"}] 
+                        {"name":"day"}],
+                    "info": { "cv-datefilter-field": "day" }
                 }
             ],
             "hierarchy" : ["year", "month", "day"]
