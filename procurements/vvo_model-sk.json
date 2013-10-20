@@ -1,187 +1,164 @@
 {
-   "locale": "sk",
-   "dimensions" : {
-      "cpv" : {
-         "levels" : {
-            "detail" : {
-               "label" : "detail",
-               "attributes" : {
-                  "detail" : {"label": "detail"},
-                  "id" : {},
-                  "detail_label" : {"label": "detail"},
-                  "code" : {"label": "CPV kod"},
-                  "detail_compet": {"label": "Koeficient súťaživosti"}
-               }
+    "locale": "sk",
+    "dimensions" : {
+        "cpv" : {
+            "attributes" : {
+                "detail" : {"label": "detail"},
+                "id" : {},
+                "detail_label" : {"label": "detail"},
+                "code" : {"label": "CPV kod"},
+                "detail_compet": {"label": "Koeficient súťaživosti"},
+                "group" : {"label": "skupina"},
+                "group_label" : {"label": "skupina"},
+                "group_compet": {"label": "Koeficient súťaživosti skupiny"},
+                "division" : {"label": "oddiel"},
+                "division_label" : {"label": "oddiel"},
+                "division_compet": {"label": "Koeficient súťaživosti oddielu"},
+                "class_label" : {"label": "trieda"},
+                "class" : {"label": "trieda"},
+                "class_compet": {"label": "Koeficient súťaživosti triedy"},
+                "category" : {"label": "kategória"},
+                "category_label" : {"label": "kategória"},
+                "category_compet": {"label": "Koeficient súťaživosti kategorie"}
             },
-            "group" : {
-               "label" : "skupina",
-               "attributes" : {
-                  "group" : {"label": "skupina"},
-                  "group_label" : {"label": "skupina"},
-                  "group_compet": {"label": "Koeficient súťaživosti skupiny"}
-               }
+
+            "levels" : {
+                "detail" : {
+                    "label" : "detail"
+                },
+                "group" : {
+                    "label" : "skupina"
+                },
+                "division" : {
+                    "label" : "oddiel"
+                },
+                "class" : {
+                    "label" : "trieda"
+                },
+                "category" : {
+                    "label" : "kategória"
+                }
             },
-            "division" : {
-               "label" : "oddiel",
-               "attributes" : {
-                  "division" : {"label": "oddiel"},
-                  "division_label" : {"label": "oddiel"},
-                  "division_compet": {"label": "Koeficient súťaživosti oddielu"}
-               }
-            },
-            "class" : {
-               "label" : "trieda",
-               "attributes" : {
-                  "class_label" : {"label": "trieda"},
-                  "class" : {"label": "trieda"},
-                  "class_compet": {"label": "Koeficient súťaživosti triedy"}
-               }
-            },
-            "category" : {
-               "label" : "kategória",
-               "attributes" : {
-                  "category" : {"label": "kategória"},
-                  "category_label" : {"label": "kategória"},
-                  "category_compet": {"label": "Koeficient súťaživosti kategorie"}
-               }
+            "label" : "Common Procurement Vocabulary",
+            "hierarchies" : {
+                "default" : {}
             }
-         },
-         "label" : "Common Procurement Vocabulary",
-         "hierarchies" : {
-            "default" : {}
-         }
-      },
-      "procurer" : {
-         "levels" : {
-            "sector": {
-                "account_sector" : {"label": "sektor"},
-                "account_sector_code" : {"label": "sektor (kód)"}
+        },
+        "procurer" : {
+            "levels" : {
+                "sector": {
+                    "account_sector" : {"label": "sektor"},
+                    "account_sector_code" : {"label": "sektor (kód)"}
+                },
+                "procurer" : {
+                    "attributes" : {
+                        "ico" : {"label": "IČO"},
+                        "region" : {"label": "región"},
+                        "name" : {"label": "názov"},
+                        "legal_form" : {"label": "právna forma"},
+                        "address" : {"label": "adresa"},
+                        "id" : {"label": "id"},
+                        "offer_count_avg": { "label": "priemerný počet ponúk na zmluvu"},
+                        "competitiveness": { "label": "koeficient súťaživosti"}
+                    }
+                }
             },
-            "procurer" : {
-               "attributes" : {
-                  "ico" : {"label": "IČO"},
-                  "region" : {"label": "región"},
-                  "name" : {"label": "názov"},
-                  "legal_form" : {"label": "právna forma"},
-                  "address" : {"label": "adresa"},
-                  "id" : {"label": "id"},
-                  "offer_count_avg": { "label": "priemerný počet ponúk na zmluvu"},
-                  "competitiveness": { "label": "koeficient súťaživosti"}
-               }
-            }
-         },
-         "label" : "Obstarávateľ",
-         "hierarchies" : {}
-      },
-      "geography" : {
-         "levels" : {
-            "okres" : {
-               "attributes" : {
-                  "okres" : {"label": "okres"},
-                  "okres_code" : {"label": "kód okresu"}
-               }
+            "label" : "Obstarávateľ",
+            "hierarchies" : {}
+        },
+        "geography" : {
+            "attributes" : {
+                "okres" : {"label": "okres"},
+                "okres_code" : {"label": "kód okresu"},
+                "kraj_code" : {"label": "kód kraja"},
+                "kraj" : {"label": "kraj"}
             },
-            "kraj" : {
-               "attributes" : {
-                  "kraj_code" : {"label": "kód kraja"},
-                  "kraj" : {"label": "kraj"}
-               }
-            }
-         },
-         "label" : "Región",
-         "hierarchies" : {
-            "default" : {}
-         }
-      },
-      "date" : {
-         "levels" : {
-            "month" : {
-               "label" : "Mesiac",
-               "attributes" : {
-                  "month_sname" : {"label": "mesiac"},
-                  "month_name" : {"label": "mesiac"},
-                  "month" : {}
-               }
+            "levels" : {
+                "okres" : { },
+                "kraj" : { }
             },
-            "day" : {
-               "label" : "Deň",
-               "attributes" : {
-                  "day" : {"label": "deň"},
-                  "id" : {}
-               }
+            "label" : "Región",
+            "hierarchies" : { "default" : {} }
+        },
+        "date" : {
+            "attributes" : {
+                "month_sname" : {"label": "mesiac"},
+                "month_name" : {"label": "mesiac"},
+                "month" : {},
+                "day" : {"label": "deň"},
+                "id" : {},
+                "year" : {"label": "rok"}
             },
-            "year" : {
-               "label" : "Rok",
-               "attributes" : {
-                  "year" : {"label": "rok"}
-               }
+            "levels" : {
+                "month" : { "label" : "Mesiac" },
+                "day" : { "label" : "Deň" },
+                "year" : { "label" : "Rok" }
+            },
+            "label" : "dátum",
+            "hierarchies" : {
+                "default" : {}
             }
-         },
-         "label" : "dátum",
-         "hierarchies" : {
-            "default" : {}
-         }
-      },
-      "supplier" : {
-         "levels" : {
-            "supplier" : {
-               "attributes" : {
-                  "country" : {"label": "krajina"},
-                  "date_end" : {"label": "dátum ukončenia činnosti"},
-                  "ico" : {"label": "IČO"},
-                  "name" : {"label": "názov"},
-                  "legal_form" : {"label": "právna forma"},
-                  "date_start" : {"label": "dátum začatia činnosti"},
-                  "address" : {"label": "adresa"},
-                  "id" : {"label": "id"},
-                  "ownership" : {"label": "druh vlastníctva"},
-                  "offer_count_avg": { "label": "priemerný počet ponúk na zmluvu"},
-                  "competitiveness": { "label": "koeficient súťaživosti"}
-               }
+        },
+        "supplier" : {
+            "attributes" : {
+                "country" : {"label": "krajina"},
+                "date_end" : {"label": "dátum ukončenia činnosti"},
+                "ico" : {"label": "IČO"},
+                "name" : {"label": "názov"},
+                "legal_form" : {"label": "právna forma"},
+                "date_start" : {"label": "dátum začatia činnosti"},
+                "address" : {"label": "adresa"},
+                "id" : {"label": "id"},
+                "ownership" : {"label": "druh vlastníctva"},
+                "offer_count_avg": { "label": "priemerný počet ponúk na zmluvu"},
+                "competitiveness": { "label": "koeficient súťaživosti"}
+            },
+            "levels" : {
+                "supplier" : {
+                }
+            },
+            "label" : "Dodávateľ",
+            "hierarchies" : {}
+        },
+        "criteria" : {
+            "attributes" : {
+                "sdesc" : {"label": "kritéria vyhodnotenia"},
+                "id" : {},
+                "description" : {"label": "kritéria vyhodnotenia"},
+                "code" : {"label": "kritéria vyhodnotenia (kód)"}
+            },
+            "levels" : {
+                "criteria" : {
+                }
+            },
+            "label" : "Kriteria vyhodnotenia",
+            "hierarchies" : {}
+        },
+        "process_type" : {
+            "attributes" : {
+                "sdesc" : {"label": "druh postupu"},
+                "id" : {},
+                "description" : {"label": "druh postupu"},
+                "code" : {"label": "druh postupu (kód)"}
+            },
+            "levels" : {
+                "process_type" : {
+                }
+            },
+            "label" : "Druh postupu",
+            "hierarchies" : {}
+        }
+    },
+    "cubes" : {
+        "contracts" : {
+            "measures" : {
+                "contract_amount" : {"label": "hodnota zmluvy"}
+            },
+            "details" : {
+                "zakazka_nazov" : {"label": "Názov zákazky"},
+                "vestnik_cislo" : {"label": "Číslo vestníka"},
+                "source_url" : {"label": "Odkaz na pôvodný dokument"}
             }
-         },
-         "label" : "Dodávateľ",
-         "hierarchies" : {}
-      },
-      "criteria" : {
-         "levels" : {
-            "criteria" : {
-               "attributes" : {
-                  "sdesc" : {"label": "kritéria vyhodnotenia"},
-                  "id" : {},
-                  "description" : {"label": "kritéria vyhodnotenia"},
-                  "code" : {"label": "kritéria vyhodnotenia (kód)"}
-               }
-            }
-         },
-         "label" : "Kriteria vyhodnotenia",
-         "hierarchies" : {}
-      },
-      "process_type" : {
-         "levels" : {
-            "process_type" : {
-               "attributes" : {
-                  "sdesc" : {"label": "druh postupu"},
-                  "id" : {},
-                  "description" : {"label": "druh postupu"},
-                  "code" : {"label": "druh postupu (kód)"}
-               }
-            }
-         },
-         "label" : "Druh postupu",
-         "hierarchies" : {}
-      }
-   },
-   "cubes" : {
-      "contracts" : {
-         "measures" : {
-            "contract_amount" : {"label": "hodnota zmluvy"}
-         },
-         "details" : {
-            "zakazka_nazov" : {"label": "Názov zákazky"},
-            "vestnik_cislo" : {"label": "Číslo vestníka"},
-            "source_url" : {"label": "Odkaz na pôvodný dokument"}
-         }
-      }
-   }
+        }
+    }
 }
