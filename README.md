@@ -7,3 +7,6 @@ Contents
 --------
 
 * *procurements* - Public Procurements of Slovakia
+* *webshop* - Sample model and data of an imaginary online shop
+
+
