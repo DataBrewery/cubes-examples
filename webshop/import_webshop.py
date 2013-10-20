@@ -6,6 +6,7 @@ from sqlalchemy.engine import create_engine
 import re
 import datetime
 import csv
+import random
 
 cache = {}
 connection = None
@@ -24,11 +25,14 @@ def main():
     connection.execute("DELETE FROM countries");
     connection.execute("DELETE FROM products");
     connection.execute("DELETE FROM sales");
+    connection.execute("DELETE FROM webvisits")
     
     # Import facts and dimension data
     import_sales()
     # Generate all dates
-    generate_dates()    
+    generate_dates()
+    # Generate site visits
+    generate_webvisits()
 
     # Add extra dimensions for left joins
     insert_product ("Books", "200 ways of slicing a cube")    
@@ -118,8 +122,11 @@ def insert_date (year, month, day):
 
     return save_object ("dates", row)
 
-def insert_fact(fact):
+def insert_sale(fact):
     return save_object ("sales", fact)
+
+def insert_webvisit(fact):
+    return save_object ("webvisits", fact)
 
 def generate_dates():
     
@@ -152,17 +159,36 @@ def import_sales():
             
             # Process row
             fact["date_id"] = insert_date(arow["date_created.year"], arow["date_created.month"], arow["date_created.day"])
-            fact["customer_id"] = insert_customer(arow["customer.name"])
             fact["country_id"] = insert_country(arow["country.region"], arow["country.country"])
+            fact["customer_id"] = insert_customer(arow["customer.name"])
             fact["product_id"] = insert_product(arow["product.category"], arow["product.name"])
             
             # Import figures (quick hack for localization issues):
             fact["quantity"] = float(str(arow["quantity"]).replace(",", "."))
             fact["price_total"] = float(str(arow["price_total"]).replace(",", "."))
             
-            insert_fact(fact)
+            insert_sale(fact)
             
     print "Imported %d facts " % (count)
+
+def generate_webvisits():
+    
+    for i in range (1, 1079):
+        
+        fact = { "id" : i }
+        
+        fact["country_id"] = random.choice (cache["countries"].keys())
+        fact["date_id"] = random.choice (cache["dates"].keys())
+        
+        fact["browser"] = random.choice (["Lynx", "Firefox", "Firefox", "Chrome", "Chrome", "Chrome"])
+        fact["newsletter"] = random.choice(["Yes", "No", "No", "No"])
+        
+        fact["source_label"] = random.choice(["Web search", "Web search", "Direct link", "Unknown"])
+        fact["source_id"] = sanitize(fact["source_label"])
+        
+        fact["pageviews"] = abs(int (random.gauss (7, 6))) + 1
+        
+        insert_webvisit(fact)
 
 if __name__ == "__main__":
     main()

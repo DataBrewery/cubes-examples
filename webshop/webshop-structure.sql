@@ -46,3 +46,17 @@ create table sales (
     price_total real
 );
 
+drop table if exists webvisits;
+create table webvisits (
+    id varchar(128) unique,
+    
+    date_id integer,
+    country_id integer,
+    
+    browser varchar(200),
+    newsletter varchar(200),
+    source_id varchar(200),
+    source_label varchar(200),
+    
+    pageviews integer
+);

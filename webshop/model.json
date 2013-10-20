@@ -51,6 +51,12 @@
         },
         
         {
+            "name": "date_visit",
+            "label": "View Date",
+            "template": "date_base"
+        },        
+        
+        {
             "name": "customer",
             "label": "Customer"			,
             "levels": [ {
@@ -101,6 +107,27 @@
                     "label_attribute": "country_label"
                 }
             ]
+        },
+        
+        {
+            "name": "source",
+            "label": "Source",
+            "levels": [ {
+                "name": "source",
+                "label": "Source",
+                "attributes": [ "source_id", "source_label" ],
+                "label_attribute": "source_label"
+            } ]
+        },
+        
+        {
+            "name": "browser",
+            "label": "Browser"
+        },
+        
+        {
+            "name": "newsletter",
+            "label": "Newsletter"
         }
 
     ],
@@ -153,6 +180,44 @@
                 "country.region_label": "countries.continent_label",
                 "country.country_id": "countries.country_id",
                 "country.country_label": "countries.country_label"
+            }
+        },
+        
+        {
+            "name": "webvisits",
+            "label": "Website / Visits",
+            "dimensions": ["date_visit", "country", "source", "newsletter", "browser" ],
+            "measures": [
+		        {"name": "pageviews", "aggregations": ["sum", "avg", "max"] }
+            ],
+            
+            "joins": [
+                  {
+                      "master": "webvisits.date_id",
+                      "detail": "dates.id"
+                  },
+                  {
+                      "master": "webvisits.country_id",
+                      "detail": "countries.id"
+                  }
+            ],            
+            
+            "mappings": {
+                "date_visit.year": "dates.date_year",
+                "date_visit.quarter": "dates.date_quarter",
+                "date_visit.month": "dates.date_month",
+                "date_visit.week": "dates.date_week",
+                
+                "country.region_id": "countries.continent_id",
+                "country.region_label": "countries.continent_label",
+                "country.country_id": "countries.country_id",
+                "country.country_label": "countries.country_label",
+                
+                "source.source_id": "webvisits.source_id",
+                "source.source_label": "webvisits.source_label",
+                
+                "browser.browser": "browser.browser",
+                "newsletter.newsletter": "newsletter.newsletter"
             }
         }
         
