@@ -1,0 +1,65 @@
+{
+    "hierarchies": [
+        {
+            "levels": [
+                "supplier"
+            ], 
+            "name": "default"
+        }
+    ], 
+    "levels": [
+        {
+            "attributes": [
+                {
+                    "name": "id"
+                }, 
+                {
+                    "name": "ico", 
+                    "label": "company ID"
+                }, 
+                {
+                    "name": "name", 
+                    "label": "name"
+                }, 
+                {
+                    "name": "address", 
+                    "label": "address"
+                }, 
+                {
+                    "name": "country", 
+                    "label": "country"
+                }, 
+                {
+                    "name": "date_start", 
+                    "label": "operating since"
+                }, 
+                {
+                    "name": "date_end", 
+                    "label": "company closed date"
+                }, 
+                {
+                    "name": "legal_form", 
+                    "label": "legal form"
+                }, 
+                {
+                    "name": "ownership", 
+                    "label": "ownership"
+                }, 
+                {
+                    "name": "offer_count_avg", 
+                    "label": "average number of offers"
+                }, 
+                {
+                    "name": "competitiveness", 
+                    "label": "competitiveness"
+                }
+            ], 
+            "order_attribute": "id", 
+            "label_attribute": "name", 
+            "name": "supplier", 
+            "key": "id"
+        }
+    ], 
+    "name": "supplier", 
+    "label": "Supplier"
+}

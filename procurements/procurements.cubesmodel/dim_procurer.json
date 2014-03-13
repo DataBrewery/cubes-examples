@@ -1,0 +1,71 @@
+{
+    "hierarchies": [
+        {
+            "levels": [
+                "sector", 
+                "procurer"
+            ], 
+            "name": "default"
+        }
+    ], 
+    "levels": [
+        {
+            "attributes": [
+                {
+                    "name": "account_sector_code", 
+                    "label": "account sector code"
+                }, 
+                {
+                    "name": "account_sector", 
+                    "label": "account sector"
+                }
+            ], 
+            "order_attribute": "account_sector_code", 
+            "label_attribute": "account_sector", 
+            "name": "sector", 
+            "key": "account_sector_code"
+        }, 
+        {
+            "attributes": [
+                {
+                    "name": "id", 
+                    "label": "id"
+                }, 
+                {
+                    "name": "ico", 
+                    "label": "organisation ID"
+                }, 
+                {
+                    "name": "name", 
+                    "label": "name"
+                }, 
+                {
+                    "name": "region", 
+                    "label": "region"
+                }, 
+                {
+                    "name": "address", 
+                    "label": "address"
+                }, 
+                {
+                    "name": "legal_form", 
+                    "label": "legal form"
+                }, 
+                {
+                    "name": "offer_count_avg", 
+                    "label": "average number of offers"
+                }, 
+                {
+                    "name": "competitiveness", 
+                    "label": "competitiveness"
+                }
+            ], 
+            "order_attribute": "id", 
+            "label_attribute": "name", 
+            "name": "procurer", 
+            "key": "id"
+        }
+    ], 
+    "name": "procurer", 
+    "label": "Procurer"
+}

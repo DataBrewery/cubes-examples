@@ -1,0 +1,146 @@
+{
+    "hierarchies": [
+        {
+            "levels": [
+                "division", 
+                "group", 
+                "class", 
+                "category", 
+                "detail"
+            ], 
+            "name": "default"
+        }
+    ], 
+    "levels": [
+        {
+            "name": "division", 
+            "label": "division", 
+            "key": "division", 
+            "attributes": [
+                {
+                    "name": "division"
+                }, 
+                {
+                    "name": "division_label", 
+                    "locales": [
+                        "en", 
+                        "sk"
+                    ]
+                }, 
+                {
+                    "name": "division_compet", 
+                    "label": "competitiveness in division"
+                }
+            ], 
+            "order_attribute": "division", 
+            "label_attribute": "division_label"
+        }, 
+        {
+            "name": "group", 
+            "label": "group", 
+            "key": "group", 
+            "attributes": [
+                {
+                    "name": "group", 
+                    "label": "Group code"
+                }, 
+                {
+                    "name": "group_label", 
+                    "locales": [
+                        "en", 
+                        "sk"
+                    ], 
+                    "label": "Group"
+                }, 
+                {
+                    "name": "group_compet", 
+                    "label": "competitiveness in grouop"
+                }
+            ], 
+            "order_attribute": "group", 
+            "label_attribute": "group_label"
+        }, 
+        {
+            "name": "class", 
+            "label": "class", 
+            "key": "class", 
+            "attributes": [
+                {
+                    "name": "class"
+                }, 
+                {
+                    "name": "class_label", 
+                    "locales": [
+                        "en", 
+                        "sk"
+                    ]
+                }, 
+                {
+                    "name": "class_compet", 
+                    "label": "competitiveness in class"
+                }
+            ], 
+            "order_attribute": "class", 
+            "label_attribute": "class_label"
+        }, 
+        {
+            "name": "category", 
+            "label": "category", 
+            "key": "category", 
+            "attributes": [
+                {
+                    "name": "category", 
+                    "label": "category code"
+                }, 
+                {
+                    "name": "category_label", 
+                    "locales": [
+                        "en", 
+                        "sk"
+                    ], 
+                    "label": "category"
+                }, 
+                {
+                    "name": "category_compet", 
+                    "label": "competitiveness in category"
+                }
+            ], 
+            "order_attribute": "category", 
+            "label_attribute": "category_label"
+        }, 
+        {
+            "name": "detail", 
+            "label": "detail", 
+            "key": "id", 
+            "attributes": [
+                {
+                    "name": "id"
+                }, 
+                {
+                    "name": "detail", 
+                    "label": "detail code"
+                }, 
+                {
+                    "name": "detail_label", 
+                    "locales": [
+                        "en", 
+                        "sk"
+                    ], 
+                    "label": "detail"
+                }, 
+                {
+                    "name": "code", 
+                    "label": "CPV Code"
+                }, 
+                {
+                    "name": "detail_compet", 
+                    "label": "competitiveness"
+                }
+            ], 
+            "order_attribute": "id", 
+            "label_attribute": "detail_label"
+        }
+    ], 
+    "name": "cpv", 
+    "label": "Common Procurement Vocabulary"
+}

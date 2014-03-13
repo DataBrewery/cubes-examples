@@ -1,0 +1,42 @@
+{
+    "hierarchies": [
+        {
+            "levels": [
+                "criteria"
+            ], 
+            "name": "default"
+        }
+    ], 
+    "levels": [
+        {
+            "attributes": [
+                {
+                    "name": "code"
+                }, 
+                {
+                    "name": "description", 
+                    "locales": [
+                        "en", 
+                        "sk"
+                    ]
+                }, 
+                {
+                    "name": "sdesc", 
+                    "locales": [
+                        "en", 
+                        "sk"
+                    ]
+                }, 
+                {
+                    "name": "id"
+                }
+            ], 
+            "order_attribute": "code", 
+            "label_attribute": "description", 
+            "name": "criteria", 
+            "key": "code"
+        }
+    ], 
+    "name": "criteria", 
+    "label": "Evalutaion criteria"
+}

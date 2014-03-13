@@ -1,0 +1,47 @@
+{
+    "hierarchies": [
+        {
+            "levels": [
+                "kraj", 
+                "okres"
+            ], 
+            "name": "default"
+        }
+    ], 
+    "levels": [
+        {
+            "attributes": [
+                {
+                    "name": "okres_code", 
+                    "label": "county code"
+                }, 
+                {
+                    "name": "okres", 
+                    "label": "county"
+                }
+            ], 
+            "order_attribute": "okres_code", 
+            "label_attribute": "okres", 
+            "name": "okres", 
+            "key": "okres_code"
+        }, 
+        {
+            "attributes": [
+                {
+                    "name": "kraj_code", 
+                    "label": "region code"
+                }, 
+                {
+                    "name": "kraj", 
+                    "label": "region"
+                }
+            ], 
+            "order_attribute": "kraj_code", 
+            "label_attribute": "kraj", 
+            "name": "kraj", 
+            "key": "kraj_code"
+        }
+    ], 
+    "name": "geography", 
+    "label": "Region"
+}

@@ -1,0 +1,82 @@
+{
+    "info": {
+        "cv-datefilter": true
+    }, 
+    "role": "time",
+    "hierarchies": [
+        {
+            "levels": [
+                "year", 
+                "month", 
+                "day"
+            ], 
+            "name": "default"
+        }
+    ], 
+    "levels": [
+        {
+            "info": {
+                "cv-datefilter-field": "year"
+            }, 
+            "name": "year", 
+            "label": "Year", 
+            "key": "year", 
+            "attributes": [
+                {
+                    "name": "year"
+                }
+            ], 
+            "order_attribute": "year", 
+            "label_attribute": "year"
+        }, 
+        {
+            "info": {
+                "cv-datefilter-field": "month"
+            }, 
+            "name": "month", 
+            "label": "Month", 
+            "key": "month", 
+            "attributes": [
+                {
+                    "name": "month"
+                }, 
+                {
+                    "name": "month_name", 
+                    "locales": [
+                        "en", 
+                        "sk"
+                    ]
+                }, 
+                {
+                    "name": "month_sname", 
+                    "locales": [
+                        "en", 
+                        "sk"
+                    ]
+                }
+            ], 
+            "order_attribute": "month", 
+            "label_attribute": "month_name"
+        }, 
+        {
+            "info": {
+                "cv-datefilter-field": "day"
+            }, 
+            "name": "day", 
+            "label": "Day", 
+            "key": "day", 
+            "attributes": [
+                {
+                    "name": "id"
+                }, 
+                {
+                    "name": "day"
+                }
+            ], 
+            "order_attribute": "id", 
+            "label_attribute": "day"
+        }
+    ], 
+    "name": "date", 
+    "label": "Date"
+}
