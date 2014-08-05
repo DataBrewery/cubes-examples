@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, g
 import cubes
 import os.path
+import sqlalchemy
 
 import logging
 
@@ -24,22 +25,24 @@ CUBE_NAME = "contracts"
 # Some global variables. We do not have to care about Flask provided thread
 # safety here, as they are non-mutable.
 
-# workspace = None
-# model = None
+workspace = None
+model = None
 
 @app.route("/")
 @app.route("/<dim_name>")
 def report(dim_name=None):
-
-    browser = workspace.browser(model.cube(CUBE_NAME))
+    cube = workspace.cube("contracts")
+    browser = workspace.browser(cube)
+    result = browser.aggregate()
+    print 'keys: ', result.levels
 
     if not dim_name:
-        return render_template('report.html', dimensions=model.dimensions)
+        return render_template('report.html', dimensions=cube.dimensions)
 
     # First we need to get the hierarchy to know the order of levels. Cubes
     # supports multiple hierarchies internally.
     
-    dimension = model.dimension(dim_name)
+    dimension = cube.dimension(dim_name)
     hierarchy = dimension.hierarchy()
 
     # Parse the`cut` request parameter and convert it to a list of 
@@ -48,7 +51,7 @@ def report(dim_name=None):
     # browsing.
 
     cutstr = request.args.get("cut")
-    cell = cubes.Cell(browser.cube, cubes.cuts_from_string(cutstr))
+    cell = cubes.Cell(browser.cube, cubes.cuts_from_string(cube,cutstr))
 
     # Get the cut of actually browsed dimension, so we know "where we are" -
     # the current dimension path
@@ -87,7 +90,7 @@ def report(dim_name=None):
     # Finally, we render it
 
     return render_template('report.html',
-                            dimensions=model.dimensions,
+                            dimensions=cube.dimensions,
                             dimension=dimension,
                             levels=levels,
                             next_level=next_level,
@@ -100,12 +103,18 @@ def report(dim_name=None):
 def initialize_model():
     global model
     global workspace
-    model = cubes.load_model(MODEL_PATH)
-    workspace = cubes.create_workspace("sql", model, url=DB_URL,
-                                                     fact_prefix="ft_",
-                                                     dimension_prefix="dm_")
+    #model = cubes.load_model(MODEL_PATH)
+    # workspace = cubes.create_workspace("sql",url=DB_URL,
+    #                                                  fact_prefix="ft_",
+    #                                                  dimension_prefix="dm_")
+    # engine = sqlalchemy.create_engine(DB_URL)
+    # connection = engine.connect()
 
-
+    workspace = cubes.Workspace(config='slicer.ini')
+    #workspace.register_default_store("sql",url=DB_URL)
+    print MODEL_PATH
+    print DB_URL
+    #workspace.import_model(MODEL_PATH)
 if __name__ == "__main__":
     app.debug = True
     app.run()
