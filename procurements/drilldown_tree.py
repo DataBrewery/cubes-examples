@@ -1,10 +1,16 @@
-import cubes
+from cubes import Workspace, Cell
 
-model = cubes.load_model("vvo_model.json")
-cube = model.cube("contracts")
-workspace = cubes.create_workspace("sql", model, url="sqlite:///vvo_data.sqlite",
-                                    dimension_prefix="dm_",
-                                    fact_prefix="ft_")
+# 1. Create a workspace
+workspace = Workspace()
+workspace.register_default_store("sql",
+                                 url="sqlite:///vvo_data.sqlite",
+                                 dimension_prefix="dm_",
+                                 fact_prefix="ft_")
+workspace.import_model("procurements.cubesmodel")
+
+# 2. Get a browser
+browser = workspace.browser("contracts")
+cube = browser.cube
 
 # workspace = cubes.create_workspace("sql", model, url="postgres://localhost/ep2012",
 #                                     schema="vvo",
@@ -27,7 +33,7 @@ def drilldown(cell, dimension):
     if cell.is_base(dimension):
         return
 
-    result = browser.aggregate(cell, drilldown=[dimension])
+    result = browser.aggregate(aggregates=["contract_amount_sum"], cell=cell, drilldown=[dimension])
 
     # for row in cubes.drilldown_rows(cell, result, dimension):
     for row in result.table_rows(dimension):
@@ -37,11 +43,8 @@ def drilldown(cell, dimension):
         new_cell = cell.drilldown(dimension, row.key)
         drilldown(new_cell, dimension)
 
-# Drill down through all levels of item hierarchy
-browser = workspace.browser(cube)
-
 # Get whole cube
-cell = cubes.Cell(cube)
+cell = Cell(cube)
 
 print "Drill down through date hierarchy:"
 drilldown(cell, cube.dimension("date"))
