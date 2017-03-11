@@ -15,15 +15,18 @@
     ], 
     "aggregates": [
         {
-            "name": "contract_amount_sum",
+            "name": "total_amount",
+            "label": "Contract amount",
             "measure": "contract_amount",
             "function": "sum"
         },
         {
-            "name": "record_count",
-            "function": "count"
+            "name": "average_amount",
+            "label": "Contract amount",
+            "measure": "contract_amount",
+            "function": "avg"
         }
-    ], 
+    ],
     "name": "contracts", 
     "details": [
         {
