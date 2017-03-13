@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, g
 import cubes
 import os.path
 import sqlalchemy
+from configparser import ConfigParser
 
 import logging
 
@@ -34,7 +35,7 @@ def report(dim_name=None):
     cube = workspace.cube("contracts")
     browser = workspace.browser(cube)
     result = browser.aggregate()
-    print 'keys: ', result.levels
+    print('keys: ', result.levels)
 
     if not dim_name:
         return render_template('report.html', dimensions=cube.dimensions)
@@ -65,7 +66,7 @@ def report(dim_name=None):
     #
     # Do the work, do the aggregation.
     #
-    print "AGGREGATE %s DD: %s" % (cell, dim_name)
+    print("AGGREGATE %s DD: %s" % (cell, dim_name))
     result = browser.aggregate(cell, drilldown=[dim_name])
 
     # If we have no path, then there is no cut for the dimension, # therefore
@@ -110,10 +111,12 @@ def initialize_model():
     # engine = sqlalchemy.create_engine(DB_URL)
     # connection = engine.connect()
 
-    workspace = cubes.Workspace(config='slicer.ini')
+    parser = ConfigParser()
+    parser.read("slicer.ini")
+    workspace = cubes.Workspace(config=parser)
     #workspace.register_default_store("sql",url=DB_URL)
-    print MODEL_PATH
-    print DB_URL
+    print(MODEL_PATH)
+    print(DB_URL)
     #workspace.import_model(MODEL_PATH)
 if __name__ == "__main__":
     app.debug = True
